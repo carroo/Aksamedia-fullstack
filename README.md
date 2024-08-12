@@ -1,9 +1,7 @@
-# React + Vite
+# Test Case FrontEnd+BackEnd (Tugas 3) MSIB 7 Aksamedia x Catur Hendra
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+tech : laravel react tailwind 
 
-Currently, two official plugins are available:
+[live](https://aksamedia-fullstack.carroo.my.id/login)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-"# Aksamedia-fullstack" 
+[portfolio of mine](carroo.me)
