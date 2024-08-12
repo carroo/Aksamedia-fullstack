@@ -4,4 +4,4 @@ tech : laravel react tailwind
 
 [live](https://aksamedia-fullstack.carroo.my.id/login)
 
-[portfolio of mine](carroo.me)
+[portfolio of mine](https://carroo.me)
