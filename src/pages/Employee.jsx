@@ -141,7 +141,6 @@ function Employee() {
     const employee = employees[index];
     setName(employee.name);
     setPhone(employee.phone);
-    setImage(employee.image);
     setDivision(employee.division.id);
     setPosition(employee.position);
     setEditingIndex(index);
