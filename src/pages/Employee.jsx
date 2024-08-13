@@ -4,6 +4,9 @@ import toastr from "toastr";
 import axios from "axios";
 
 function Employee() {
+  toastr.options = {
+    positionClass: "toast-bottom-right",
+  };
   const loadStateFromLocalStorage = () => {
     const storedSearch = localStorage.getItem("search") || "";
     const storedSearchDivision = localStorage.getItem("searchDivision") || "";
@@ -63,6 +66,8 @@ function Employee() {
     if (storedCurrentPage) {
       params.page = storedCurrentPage;
     }
+    console.log(storedCurrentPage);
+
     const response = await axios.get(
       "https://aksamedia-backend.carroo.my.id/api/employees",
       {
@@ -74,7 +79,6 @@ function Employee() {
     );
     setEmployees(response.data.data.employees);
     setPaginate(response.data.pagination);
-    console.log(response.data.data.employees);
     setLoading(false);
   };
   const positions = ["Manager", "Programmer", "Staff"];
@@ -85,7 +89,6 @@ function Employee() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("currentPage", "1");
     setCurrentPage(1);
     localStorage.setItem("search", search);
     localStorage.setItem("searchDivision", searchDivision);

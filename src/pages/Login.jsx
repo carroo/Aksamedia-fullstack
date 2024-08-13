@@ -5,29 +5,41 @@ import "toastr/build/toastr.min.css";
 import toastr from "toastr";
 
 function Login({ login }) {
+  toastr.options = {
+    "positionClass": "toast-bottom-right"
+  };
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
-      const response = await axios.post("https://aksamedia-backend.carroo.my.id/api/login", {
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://aksamedia-backend.carroo.my.id/api/login",
+        {
+          username: username,
+          password: password,
+        }
+      );
       if (response.data.data.token) {
         sessionStorage.setItem("token", response.data.data.token);
-        sessionStorage.setItem("admin", JSON.stringify(response.data.data.admin));
+        sessionStorage.setItem(
+          "admin",
+          JSON.stringify(response.data.data.admin)
+        );
         login();
-        toastr.success('Login Successfully');
+        toastr.success("Login Successfully");
         navigate("/");
       } else {
-        toastr.error('Something went wrong');
+        toastr.error("Something went wrong");
       }
     } catch (error) {
-      toastr.error('use username:admin and password:admin123 for login');
+      toastr.error("use username:admin and password:admin123 for login");
     }
+    setLoading(false);
   };
 
   return (
@@ -70,7 +82,35 @@ function Login({ login }) {
               className="w-full items-center justify-center rounded-md text-sm font-medium dark:bg-slate-600 bg-black dark:hover:bg-slate-700 hover:bg-black/90 text-slate-50 h-10 px-4 py-2"
               type="submit"
             >
-              Login
+              {loading ? (
+                <>
+                  <p className="text-gray-600 dark:text-gray-300 flex justify-center">
+                    <svg
+                      className="animate-spin h-5 w-5 mr-3 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zM12 24a12 12 0 0012-12h-4a8 8 0 01-8 8v4z"
+                      ></path>
+                    </svg>
+                    Loading...
+                  </p>
+                </>
+              ) : (
+                <>Login</>
+              )}
             </button>
           </div>
         </form>

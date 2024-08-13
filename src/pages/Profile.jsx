@@ -3,13 +3,16 @@ import "toastr/build/toastr.min.css";
 import toastr from "toastr";
 
 function Profile({ username, setUsername }) {
+  toastr.options = {
+    positionClass: "toast-bottom-right",
+  };
   const [newUsername, setNewUsername] = useState(username);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsername(newUsername);
     sessionStorage.setItem("username", newUsername);
-    toastr.success('Username saved successfully');
+    toastr.success("Username saved successfully");
   };
 
   return (
